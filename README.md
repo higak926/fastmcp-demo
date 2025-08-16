@@ -32,4 +32,6 @@ And you can verify the MCP server in your browser by launching mcptools with the
 mcp web http://127.0.0.1:8000/sse
 ```
 
+<img width="1190" height="523" alt="FastMCP" src="https://github.com/user-attachments/assets/60f59028-e53f-4b28-8a7a-454ea3de2d5b" />
+
 Have a great development experience!
