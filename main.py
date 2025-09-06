@@ -3,12 +3,27 @@ from google import genai
 from fastmcp import FastMCP
 
 scraping_mcp_client = Client("scraping.py")
+beer_mcp_client = Client("beer.py")
 dice_mcp_client = Client("dice.py")
 user_fetch_mcp_client = Client("user_fetch.py")
 analyze_user_income_mcp_client = Client("analyze_user_income.py")
 gemini_client = genai.Client()
 
 mcp = FastMCP(name="main")
+
+
+@mcp.tool
+async def beer(contents: str):
+    async with beer_mcp_client:
+        response = await gemini_client.aio.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=f"{contents}",
+            config=genai.types.GenerateContentConfig(
+                temperature=0,
+                tools=[beer_mcp_client.session],
+            ),
+        )
+        return response.text
 
 
 @mcp.tool
