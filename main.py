@@ -70,11 +70,11 @@ async def user_fetch(user_id: str):
 
 
 @mcp.tool
-async def analyze_user_income(user_id: int):
+async def analyze_user_income(context: str):
     async with analyze_user_income_mcp_client:
         response = await gemini_client.aio.models.generate_content(
             model="gemini-2.0-flash",
-            contents=f"analyze user income {user_id}",
+            contents=context,
             config=genai.types.GenerateContentConfig(
                 temperature=0,
                 tools=[analyze_user_income_mcp_client.session],
