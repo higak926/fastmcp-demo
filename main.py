@@ -42,11 +42,11 @@ async def dice(roll_num: str):
 
 
 @mcp.tool
-async def scraping(url: str):
+async def scraping(context: str):
     async with scraping_mcp_client:
         response = await gemini_client.aio.models.generate_content(
             model="gemini-2.0-flash",
-            contents=f"{url}",
+            contents=context,
             config=genai.types.GenerateContentConfig(
                 temperature=0,
                 tools=[scraping_mcp_client.session],
